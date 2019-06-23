@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .navTopBar{
+            width: 1960px;
+            height: 70px;
+            margin: 0 auto;
+            position: fixed;
+            top:0;
+            background-color: black;
+        }
+        .navTopBar-hide{
+            transform: translateY(-100px);
+            transition: all 1s;
+        }
+        .wrap{
+            width: 1960px;
+            height: 3000px;
+            margin-top: 70px;
+            display: block;
+            background: linear-gradient(to bottom, red,yellow,green,blue,purple);
+        }
+        .banner{
+            width: 1960px;
+            height: 1000px;
+            margin: 0 auto;
+            /* background-color:purple */
+        }
+        .banner2{
+            width: 1960px;
+            height: 1000px;
+            margin: 0 auto;
+            /* background-color: rebeccapurple; */
+        }
+        .banner3{
+            width: 1960px;
+            height: 1000px;
+            margin: 0 auto;
+            /* background-color: hotpink; */
+        }
+        .to-top{
+            width: 50px;
+            height: 50px;
+            display: none;
+            border: none;
+            border-radius: 50px;
+            background-color: #fff;
+            color: black;
+            position: fixed;
+            left: 100px;
+            bottom: 150px;
+            text-align: center;
+            line-height: 50px;
+            box-shadow:0px 0px 5px #000 inset;
+        }
+        .to-bottom{
+            width: 100px;
+            height: 50px;
+            display: none;
+            border: none;
+            border-radius: 50px;
+            background-color: #fff;
+            color: black;
+            position: fixed;
+            left: 100px;
+            bottom: 300px;
+            text-align: center;
+            line-height: 50px;
+            box-shadow:0px 0px 5px #000 inset;
+        }
+    
+    
+    </style>
+</head>
+<body>
+    <div class="navTopBar"></div>
+    <div class="wrap">
+        <div class="banner"></div>
+        <div class="banner2"></div>
+        <div class="banner3"></div>
+    </div>
+    <button class="to-top">top</button>
+    <button class="to-bottom">bottom</button>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            $('.to-bottom').show();
+            // $('.to-top').fadeOut();
+            //页面滚动效果
+            $(window).scroll(function(){
+                //回到顶部的按钮先隐藏
+                
+                //判断是否到一定的距离
+                if($(window).scrollTop()>300){
+                    //出现回到顶部的按钮
+                    $('.to-top').fadeIn();
+                    $('.to-bottom').fadeOut();
+                    //设置顶部导航栏消失
+                    $('.navTopBar').addClass('navTopBar-hide');
+
+                }else{
+                    $('.to-top').fadeOut();
+                    $('.to-bottom').fadeIn();
+                    $('.navTopBar').removeClass('navTopBar-hide');
+                }
+            })
+            //回到顶部动画
+            //点击to-top页面自动回到顶部
+            $('.to-top').on('click',function(){
+                //事件处理
+                // $(this).animate({
+                //     bottom:'100%'
+                // },1000);
+                
+                $('html,body').animate({
+                    scrollTop:'0px'
+                },1000);
+
+            });
+            //到底部
+            $('.to-bottom').on('click',function(){
+                $('html,body').animate({
+                    scrollTop:'3000px'
+                },1000);
+            })
+        })
+    
+    
+    </script>
+</body>
+</html>
